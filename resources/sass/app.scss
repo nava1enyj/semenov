@@ -1,4 +1,20 @@
 // Fonts
+.small-img{
+    width: 400px;
+    height: 400px;
+}
+
+.text-hidden-home-page{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    box-orient: vertical;
+}
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
@@ -6,3 +22,5 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+

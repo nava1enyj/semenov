@@ -1,7 +1,7 @@
-<footer class="bg-white p-2 shadow-lg p-3 bg-body rounded">
+<footer class="bg-info p-3 shadow-lg">
 
     <div class="container">
-        <div class="text-center text-primary">Семенов</div>
+        <div class="text-center text-dark">Контактные данные</div>
 
     </div>
 

@@ -47,20 +47,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
 
-        return Validator::make($data, [
-            'login' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'lastname' => ['required'],
-            'name' => ['required'],
-            'patronymic' => ['required'],
-            'image' => ['required']
-
-        ]);
-    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -73,7 +60,7 @@ class RegisterController extends Controller
         $path = '';
 
         if(request()->file('image')){
-            $path = request()->file('image')->store('uploads','public');
+            $path = request()->file('image')->store('uploads/users','public');
         }
 
 
