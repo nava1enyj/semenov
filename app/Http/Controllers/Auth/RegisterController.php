@@ -71,6 +71,7 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
             'name' => $data['name'],
             'patronymic' => $data['patronymic'],
+            'phone' => $data['phone'],
             'image' => $path
 
         ]);

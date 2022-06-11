@@ -1,8 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
 .small-img {
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
+}
+
+.middle-img {
+  width: 600px;
+  height: 600px;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
 }
 
 .text-hidden-home-page {
@@ -14,6 +24,13 @@
   -webkit-box-orient: vertical;
   line-clamp: 3;
   box-orient: vertical;
+}
+
+#btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
 }
 
 /*!

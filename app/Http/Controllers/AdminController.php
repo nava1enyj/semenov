@@ -37,4 +37,9 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success' , 'Робот успешно был добавлен');
     }
+    public function deleteRobot(Request $request){
+        $robot = Robot::find($request->id);
+        $robot->delete();
+        return redirect()->back()->with('success' , 'Робот успешно был удален');
+    }
 }

@@ -17,12 +17,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('home') }}">{{ __('Главная') }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('robots') }}">{{ __('Все роботы') }}</a>
-                </li>
+
             </ul>
 
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand ms-5 ps-3" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
 

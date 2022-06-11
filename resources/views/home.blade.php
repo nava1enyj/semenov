@@ -23,7 +23,7 @@
 
 
 
-                                    <a href="{{ route('robot-description') }}">Подробнее</a>
+                                <a href="{{ route('robot-description' , $robot->id) }}">Подробнее</a>
 
 
 

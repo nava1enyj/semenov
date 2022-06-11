@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->string('name');
             $table->string('patronymic');
+            $table->string('phone' , '255');
             $table->string('image');
             $table->boolean('admin')->default('0');
             $table->timestamp('email_verified_at')->nullable();

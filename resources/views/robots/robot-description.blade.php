@@ -1,41 +1,83 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up fs-3 rounded-circle">↑</i>
+    </button>
     <div class="container">
         <div class="p-3">
-            <h3 class="text-center">
-                Назвавние
+            <h3 class="text-center mb-3 border-bottom">
+                {{ $data->name }}
             </h3>
             <div class="d-flex justify-content-center">
 
-                <img src="" alt="">
+                <img src="{{ '/storage/' . $data->image}}" class="rounded mb-3 middle-img border shadow-lg" alt="">
 
 
             </div>
-            <div class="text-break fs-5">Описание</div>
+            <div class="text-break fs-5">Описание: {{ $data->description }}</div>
             <div class="mt-4">
 
-                <form action="#">
+                <form action="{{ route('robot-description-add-message') }}" method="post">
+
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </div>
+                    @endif
+                    @if(session('success'))
+                        <div class="alert alert-success">
+
+                            <li>{{ session('success') }}</li>
+
+                        </div>
+                    @endif
+                    @csrf
+
+                    <input type="hidden" name="idPost" value="{{ $data->id }}">
                     <h3 class="text">Коментарии: </h3>
                     <div class="form-floating">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                        <textarea class="form-control" placeholder="Leave a comment here" name="message"
+                                  id="floatingTextarea2" style="height: 100px"></textarea>
                         <label for="floatingTextarea2">Comments</label>
                     </div>
                     <button class="btn btn-primary mt-3">Оставить коментарий</button>
                 </form>
-                <div class="card mt-4 w-75">
-                    <div class="p-3">
+                @foreach($messages as $message)
+
+                    <div class="card mt-4 w-75 mb-3">
+                        <div class="p-3">
                             <div class="d-flex justify-content-between">
 
-                                <h5>Ник: sdfgsdfg</h5>
-                                <div>Дата: 2121413</div>
+                                <h5>Ник: {{ $message->users['login'] }}</h5>
+                                <div>Дата: {{ $message->created_at }}</div>
+                            </div>
+                            <div class="d-flex">
+
+{{--                                <img class="avatar border shadow-lg me-3" src="{{ '/storage/' . $message->users['image'] }}" alt="">--}}
+                                <div>
+                                    <div class="mt-2">{{ $message->message }}</div>
+                                </div>
+
+
                             </div>
 
-                            <div class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur consequatur cum cupiditate debitis delectus dicta enim eos facilis fugiat itaque laudantium minus modi molestiae molestias, numquam optio porro praesentium quae qui sed suscipit unde vero, voluptatibus! Facere nostrum perferendis provident quaerat sint vero voluptas! Aliquam amet atque cum cupiditate deleniti eius enim eos ipsum magni molestiae odit perspiciatis, quaerat quisquam ratione, reiciendis rerum sequi sint sunt vitae, voluptatem. Accusamus, consequuntur cumque dolore doloribus ducimus earum excepturi explicabo ipsam minima nam pariatur suscipit ut voluptatibus. A alias cum debitis distinctio dolorem esse, magni, minus odio officia placeat quos suscipit temporibus unde?s</div>
+                        </div>
+                        <div class="d-flex justify-content-end">
 
+                            @if($message->users['id'] == \Auth::user()->id or \Auth::user()->admin == 1)
+                                <a href="{{ route('delete-message' , $message->id) }}"
+                                   class="link link-danger me-2 mb-2">Удалить</a>
+                            @endif
+                        </div>
 
                     </div>
-                </div>
+
+                @endforeach
+
 
             </div>
 
@@ -44,5 +86,7 @@
 
     </div>
 
-
+    @push('scripts')
+        <script src="{{ asset('js/scrollToTop.js') }}" defer></script>
+    @endpush
 @endsection
